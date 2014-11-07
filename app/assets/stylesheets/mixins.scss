@@ -1,0 +1,294 @@
+@mixin linear-gradient($start, $end){
+  background-color: $start;
+  background: -moz-linear-gradient(top, $start 0%, $end 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $start), color-stop(100%, $end)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $start 0%, $end 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $start 0%, $end 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $start 0%, $end 100%); /* IE10+ */
+  background: linear-gradient(top, $start 0%, $end 100%); /* W3C */
+  // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}'); /* for IE */
+  // -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}')";
+
+}
+
+@mixin horizontal-gradient($start, $end){
+  background-color: $start;
+  background: -moz-linear-gradient(left, $start 0%, $end 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, $start), color-stop(100%, $end)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, $start 0%, $end 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, $start 0%, $end 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, $start 0%, $end 100%); /* IE10+ */
+  background: linear-gradient(to right, $start 0%, $end 100%); /* W3C */
+  // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}', GradientType=1); /* for IE */
+  // -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}', GradientType=1)";
+}
+
+@mixin radial-gradient($start, $end){
+  background-color: $start;
+  background: -moz-radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $start), color-stop(100%, $end)); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* IE10+ */
+  background: radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* W3C */
+}
+
+@mixin box-shadow($shadow){
+  box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  -o-box-shadow: $shadow;
+}
+
+@mixin border-radius($radius){
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin box-sizing($mode){
+  box-sizing: $mode;
+  -webkit-box-sizing: $mode;
+  -moz-box-sizing: $mode;
+  -o-box-sizing: $mode;
+}
+
+@mixin ellipsis(){
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+}
+
+@mixin transform($transform){
+  -moz-transform: $transform; /* FF3.6+ */
+  -webkit-transform: $transform; /* Chrome, Safari */
+  -o-transform: $transform; /* Opera */
+  -ms-transform: $transform; /* IE 9 */
+  transform: $transform;
+}
+
+@mixin transition($transition){
+  -moz-transition: $transition; /* FF3.6+ */
+  -webkit-transition: $transition; /* Chrome, Safari */
+  -o-transition: $transition; /* Opera */
+  -ms-transition: $transition; /* IE 9 */
+  transition: $transition;
+}
+
+@mixin animation($animation){
+  -moz-animation: $animation; /* FF3.6+ */
+  -webkit-animation: $animation; /* Chrome, Safari */
+  -o-animation: $animation; /* Opera */
+  -ms-animation: $animation; /* IE 9 */
+  animation: $animation;
+}
+
+@mixin arrow($dir, $color, $size: 5px){
+  vertical-align: middle;
+  content: " ";
+  @if $dir == 'down' {
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+    border-top: $size + 2px solid $color;
+    border-style: solid double none; // weird Firefox rendering bug fix
+  }
+  @if $dir == 'up' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size + 2px solid $color;
+    border-style: none double solid; // weird Firefox rendering bug fix
+  }
+  @if $dir == 'left' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    border-style: double solid double none; // weird Firefox rendering bug fix
+  }
+  @if $dir == 'right' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    border-style: double none double solid; // weird Firefox rendering bug fix
+  }
+  width: 0;
+  height: 0;
+}
+
+@mixin keyframes($name){
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  // @-moz-keyframes #{$name} {
+  //   @content;
+  // }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  // @keyframes #{$name} {
+  //   @content;
+  // }
+}
+
+@mixin wiggle($amount){
+  @include keyframes(wiggle){
+    0% {
+      @include transform(rotate($amount));
+    }
+    50% {
+      @include transform(rotate(-$amount));
+    }
+    100% {
+      @include transform(rotate($amount));
+    }
+  }
+}
+
+@mixin clearfix(){
+  &:after {
+    display: block;
+    content: ' ';
+    clear: both;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+    width: 100%;
+    zoom: 1;
+  }
+}
+
+@mixin columns($num){
+  -moz-column-count: $num;
+  -webkit-column-count: $num;
+  column-count: $num;
+}
+
+@mixin placeholder-icon {
+  display: block;
+  content: " ";
+  font-family: 'FontAwesome';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size: 6em;
+  color: #edeef1;
+  margin-top: 20px;
+}
+
+// @mixin icon-base($fa-var-icon, $color: inherit){
+//   text-decoration: none;
+
+//   &:after {
+//     font-family: FontAwesome;
+//     color: $color;
+//     content: $fa-var-icon;
+//     @content;
+//   }
+// }
+
+@mixin no-appearance(){
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: normal;
+}
+
+@mixin common-field {
+  border: solid 1px #C0C0C0;
+  height: 28px;
+  vertical-align: middle;
+  padding: 0 8px;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px #E4E4E4;
+  margin: 0;
+  background: #fff;
+
+  &:focus {
+    outline: none;
+    border: solid 1px #888888;
+  }
+
+  &:disabled {
+    background: #F9F9FB;
+    color: #999;
+  }
+}
+
+@mixin no-select() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin rotate($rotate){
+  -moz-transform: rotate($rotate); /* FF3.6+ */
+  -webkit-transform: rotate($rotate); /* Chrome, Safari */
+  -o-transform: rotate($rotate); /* Opera */
+  -ms-transform: rotate($rotate); /* IE 9 */
+  transform: rotate($rotate);
+}
+
+@mixin appearance($type) {
+  -webkit-appearance: $type;
+  -moz-appearance: $type;
+  -o-appearance: $type;
+}
+
+@mixin perspective($value) {
+  -webkit-perspective: $value;
+  -moz-perspective: $value;
+  -ms-perspective: $value;
+  -o-perspective: $value;
+  perspective: $value;
+}
+
+@mixin transform-style($value) {
+  -webkit-transform-style: $value;
+  -moz-transform-style: $value;
+  -ms-transform-style: $value;
+  -o-transform-style: $value;
+  transform-style: $value;
+}
+
+@mixin transform-origin($value) {
+  -webkit-transform-origin: $value;
+  -moz-transform-origin: $value;
+  -o-transform-origin: $value;
+  -ms-transform-origin: $value;
+  transform-origin: $value;
+}
+
+@mixin backface-visibility($value) {
+  -webkit-backface-visibility: $value;
+  -moz-backface-visibility: $value;
+  -ms-backface-visibility: $value;
+  -o-backface-visibility: $value;
+  backface-visibility: $value;
+}
+
+@mixin placeholder-text-color($color) {
+  &::-webkit-input-placeholder {
+     color: $color;
+  }
+  &:-moz-placeholder {
+      /* FF 4-18 */
+     color: $color;
+  }
+  &::-moz-placeholder {
+      /* FF 19+ */
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+      /* IE 10+ */
+      color: $color;
+  }
+}
+
+
+
