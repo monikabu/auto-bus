@@ -25,30 +25,21 @@ class TrailsController < ApplicationController
 
     @main = JSON.parse(@weather_response.body)['weather'].first['main']
     @temperature = JSON.parse(@weather_response.body)['main'].first.second - 273.15
-    if @main == "Rain"
-      @jak = "chujowo, bo pada"
-      if @temperature < 20
-        @jak = @jak + " i pizga"
-      end
+    if @main == "Rain" || @temperature < 15
+      @jak = "przy chujowej pogodzie"
     else
       @jak = "czy Ty musisz być takim leniem, napierdalaj na piechotę"
     end
 
     @jak
     bus_trip_duration(trail_params)
-    if @bus_trip_duration < @car_trip_duration
-      @czym = 'dziś niestety musisz się pointegrować z plebsem - wycieczka autobusem będzie szybszą opcją'
-    else
-      @czym = 'nie bądź głupi, jedź autem'
-    end
-    @czym
   end
 
   def create
     @trail = Trail.new(trail_params)
     if @trail.save
       flash[:notice] = "Your trail was successfully created"
-      redirect_to trails_path
+      redirect_to trail_path(@trail)
     else
       render "new"
     end
