@@ -1,16 +1,5 @@
-<div style="display:none;">
-<h1>Your trip by car will take: <%=@car_trip_duration %></h1>
-<h2>Jak jest? <%= @jak  %></h2>
-<h3>
-  <%= @start_point_lon %>
-  <%= @start_point_lat %>
-  <%= @end_point_lon %>
-  <%= @end_point_lat %>
-</h3>
-</div>
-
 <div class="itemWrap">
-  <div class="item car">
+  <div class="item car <% if @car_trip_duration < @bus_trip_duration %>suggested <% end %>">
     <div class="header">
       <h2>czas dojazdu carem</h2>
       <div class="content">
@@ -18,20 +7,22 @@
 
         </div>
 
-        <p>Autkiem śmigniesz do domku w 46 minutek
-        przy chujowej pogodzie</p>
+        <p>Autkiem śmigniesz w <%= @car_trip_duration %></p>
+        <p><%= @jak %></p>
 
       </div>
     </div>
   </div>
 
-  <div class="item bus suggested">
+  <div class="item bus <% if @car_trip_duration > @bus_trip_duration %>suggested <% end %>">
     <div class="header">
       <h2>czas dojazdu busem</h2>
     </div>
     <div class="content">
-      <p>Bus z żulkiem i 2 Basie dowiezie Cię w takim czasie: 13 minutek przy szczęśliwej pogodzie</p>
+      <p>Bus z żulkiem i 2 Basie dowiezie Cię w takim czasie: <%= @bus_trip_duration %></p>
+      <p><%= @jak %></p>
     </div>
   </div>
   <div class="clearfix"></div>
 </div>
+
