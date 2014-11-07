@@ -1,4 +1,4 @@
-class TrailsController < ActionController::Base
+class TrailsController < ApplicationController
   #Excon.defaults[:uri_parser] = Addressable::URI
 
   def index
