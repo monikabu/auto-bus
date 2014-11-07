@@ -2,8 +2,8 @@ body,
 html {
   margin: 0;
   padding: 0;
+  font-family: 'Lato', sans-serif;
 }
-
 
 html {
   background: asset-url('bg.png')  no-repeat center center fixed;
@@ -13,12 +13,86 @@ html {
   background-size: cover;
 }
 
-
-body {
-  padding: 0 60px;
-
+.contentWrap {
+  margin: 60px auto;
+  max-width: 720px;
 }
 
+.logo {
+  background: asset-url('logo.png')  no-repeat center center;
+  width: 126px;
+  height: 93px;
+  display: block;
+  margin: 0 auto 80px auto;
+}
 
+.clearfix {
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+}
 
+.item {
+  width: 320px;
+  float: left;
+  margin: 0 20px;
+  min-height: 200px;
+  border-radius: 2px;
 
+  &.suggested {
+    box-shadow: 20px 34.641px 92px 0px rgba(0, 0, 0, 0.7);
+  }
+
+  .header {
+    height: 90px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+    padding-top: 56px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+
+    h2 {
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+  } //.header
+
+  .content {
+    padding: 20px;
+
+    .estimatedTime {
+
+    }
+  }
+
+  &.car {
+    background: #0069dc;
+
+    .header {
+      color: #fff;
+      background: asset-url('car-icon.png')  no-repeat 50% 20px;
+    }
+  }
+
+  &.bus {
+    background: #88dccc;
+
+    .header {
+      color: #466661;
+      background: asset-url('bus-icon.png')  no-repeat 50% 20px;
+    }
+  }
+} // .item
+
+.copyright {
+  margin-top: 60px;
+  color: #929292;
+  text-align: center;
+  font-size: 13px;
+  clear: both;
+}
