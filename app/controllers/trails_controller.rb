@@ -20,18 +20,18 @@ class TrailsController < ActionController::Base
       end_point_street: @trail.end_point_street,
       end_point_number: @trail.end_point_number
     }
-    @car_trip_duration = Trail.trip_duration(trail_params)
-    get_weather_stats(trail_params)
-    if @main == "Rain"
-      @jak = "chujowo, bo pada"
-      if @temperature < 20
-        @jak + "i pizga"
-      end
-    end
+    # @car_trip_duration = Trail.trip_duration(trail_params)
+    # get_weather_stats(trail_params)
+    # if @main == "Rain"
+    #   @jak = "chujowo, bo pada"
+    #   if @temperature < 20
+    #     @jak + "i pizga"
+    #   end
+    # end
 
-    get_georeferences(trail_params)
+    # @jak
+    #@bus_trip_duration = bus_trip_duration(trail_params)
 
-    @jak
   end
 
   def create
@@ -44,12 +44,20 @@ class TrailsController < ActionController::Base
     end
   end
 
+  def bus_trip_duration(trail_params)
+    get_georeferences(trail_params)
+    @response = Excon.get("http://#{trail_params[:start_point_city]}.jakdojade.pl/?fc=#{@s_p_lat}:#{@s_p_ln}&tc=#{@e_p_lat}:@e_p_ln")
+    throw response
+  end
+
   def get_georeferences(trail_params)
     ##{trail_params[:end_point_number]}+#{trail_params[:end_point_street]}+#{trail_params[:end_point_city]}
     @start_point_response ||= Excon.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{trail_params[:start_point_number]}+#{trail_params[:start_point_street]}+#{trail_params[:start_point_city]}&key=AIzaSyBeilkitrb2rF6u0GYvrbdPhM9qtWgC0_s")
-    @start_point_lon = JSON.parse(@start_point_response.body)['coord']['lon']
-    @end_point_lat = JSON.parse(@start_point_response.body)['coord']['lat']
-    throw @response
+    @end_point_response ||= Excon.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{trail_params[:end_point_number]}+#{trail_params[:end_point_street]}+#{trail_params[:end_point_city]}&key=AIzaSyBeilkitrb2rF6u0GYvrbdPhM9qtWgC0_s")
+    @s_p_ln = JSON.parse(@start_point_response.body)['results'].first['geometry']['location']['lng']
+    @s_p_lat = JSON.parse(@start_point_response.body)['results'].first['geometry']['location']['lat']
+    @e_p_ln = JSON.parse(@end_point_response.body)['results'].first['geometry']['location']['lng']
+    @e_p_lat = JSON.parse(@end_point_response.body)['results'].first['geometry']['location']['lat']
   end
 
   def get_weather_stats(trail_params)
