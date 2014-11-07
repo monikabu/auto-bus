@@ -2,15 +2,13 @@
   <div class="item car <% if @car_trip_duration < @bus_trip_duration %>suggested <% end %>">
     <div class="header">
       <h2>czas dojazdu carem</h2>
-      <div class="content">
-        <div calss="estimatedTime">
-
-        </div>
-
+    </div>
+    <div class="content">
+      <div class="estimatedTime">
+        <span class="clock"></span><%= @car_trip_duration %>
+      </div>
         <p>Autkiem śmigniesz w <%= @car_trip_duration %></p>
         <p><%= @jak %></p>
-
-      </div>
     </div>
   </div>
 
@@ -19,6 +17,9 @@
       <h2>czas dojazdu busem</h2>
     </div>
     <div class="content">
+      <div class="estimatedTime">
+        <span class="clock"></span> <%= @bus_trip_duration %>
+      </div>
       <p>Bus z żulkiem i 2 Basie dowiezie Cię w takim czasie: <%= @bus_trip_duration %></p>
       <p><%= @jak %></p>
     </div>
