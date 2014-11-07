@@ -1,5 +1,6 @@
 <div class="itemWrap">
-  <div class="item car <% if @car_trip_duration < @bus_trip_duration %>suggested <% end %>">
+<%throw 1%>
+  <div class="item car <% if @car_trip_duration.to_i < @bus_trip_duration.to_i %> suggested <% end %>">
     <div class="header">
       <h2>czas dojazdu carem</h2>
     </div>
@@ -12,7 +13,7 @@
     </div>
   </div>
 
-  <div class="item bus <% if @car_trip_duration > @bus_trip_duration %>suggested <% end %>">
+  <div class="item bus <% if @car_trip_duration.to_i > @bus_trip_duration.to_i %>suggested <% end %>">
     <div class="header">
       <h2>czas dojazdu busem</h2>
     </div>
