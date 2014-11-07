@@ -141,3 +141,77 @@ html {
   font-size: 13px;
   clear: both;
 }
+
+
+#new_trail {
+  display: block;
+  margin: 0 auto;
+  max-width: 340px;
+  border-radius: 2px;
+  padding: 30px;
+  background: #0069dc;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  h3 {
+    font-size: 13px;
+    clear: both;
+  }
+  h2 {
+    background: asset-url('route-icon.png')  no-repeat 50% 0;
+    font-size: 24px;
+    text-align: center;
+    padding-top: 70px
+  }
+
+  h3, h2 {
+    color: #fff;
+  }
+
+  input[type="text"] {
+    display: block;
+    height: 30px;
+    width: 100%;
+    background: #fff;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 10px;
+
+
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+
+  .split {
+
+    input[type="text"] {
+      width: 50%;
+      float: left;
+      display: inline-block;
+    }
+  }
+
+
+  .addRoute {
+    background: #88dccc;
+    display: block;
+    clear: both;
+    color: #466661;
+    border: none;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 2px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    padding: 0;
+  }
+}
+
+
+
