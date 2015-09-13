@@ -12,6 +12,7 @@ class TrailsController < ApplicationController
 
   def show
     @car_trip_duration = Trips::Car.duration(trail)
+    @bus_trip_duration = Trips::Bus.duration(trail)
     get_weather_stats(trail)
 
     @main = JSON.parse(@weather_response.body)['weather'].first['main']
@@ -23,7 +24,6 @@ class TrailsController < ApplicationController
     end
 
     @jak
-    bus_trip_duration(trail)
   end
 
   def create
@@ -34,11 +34,6 @@ class TrailsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def bus_trip_duration(trail_params)
-    @bus_trip_response = Excon.get("https://maps.googleapis.com/maps/api/directions/json?origin=#{trail_params[:start_point_number]}+#{trail_params[:start_point_street]}+#{trail_params[:start_point_city]}&destination=#{trail_params[:end_point_number]}+#{trail_params[:end_point_street]}+#{trail_params[:end_point_city]}&mode=transit&departure_time=1415369556&key=AIzaSyBeilkitrb2rF6u0GYvrbdPhM9qtWgC0_s")
-    @bus_trip_duration = JSON.parse(@bus_trip_response.body)['routes'].first['legs'].first['duration']['text']
   end
 
   def get_weather_stats(trail_params)

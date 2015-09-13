@@ -1,16 +1,7 @@
 class Trips::Car < Trips::Base
 
-  def self.duration(trail)
-    response = get(duration_url(trail))
-    trip_duration(response)
-  end
-
-  def self.duration_url(trail)
-    "#{api_base_url}/json?#{origins(trail)}&mode=driving&language=en-EN&key=AIzaSyBeilkitrb2rF6u0GYvrbdPhM9qtWgC0_s"
-  end
-
-  def self.api_base_url
-    'https://maps.googleapis.com/maps/api/distancematrix'
+  def self.trip_url(trail)
+    "#{api_base_url}/distancematrix/json?#{origins(trail)}&mode=driving&language=en-EN&key=AIzaSyBeilkitrb2rF6u0GYvrbdPhM9qtWgC0_s"
   end
 
   def self.origins(trail)
