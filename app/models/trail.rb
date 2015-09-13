@@ -15,6 +15,8 @@
 #
 
 class Trail < ActiveRecord::Base
+  validates_uniqueness_of :name
+  validates_presence_of :name
   validates_presence_of :start_point_city
   validates_presence_of :start_point_number
   validates_presence_of :start_point_street

@@ -15,11 +15,17 @@ html {
 
 a:link {
   text-decoration: none;
+  &.trail_title {
+    color: #88dccc;
+  }
 }
 
 a:visited {
     text-decoration: none;
     color: #466661;
+  &.trail_title {
+    color: #88dccc;
+  }
 }
 
 
@@ -254,4 +260,8 @@ a:visited {
   margin-top: 20px;
   padding: 0;
   margin: auto;
+}
+
+.trail_subtitle {
+  color: #929292
 }
