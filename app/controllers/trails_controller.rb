@@ -1,4 +1,5 @@
 class TrailsController < ApplicationController
+  before_action :trail, only: :show
 
   def index
     @trails = Trail.all
@@ -10,17 +11,8 @@ class TrailsController < ApplicationController
   end
 
   def show
-    @trail = Trail.find(params[:id])
-    trail_params = {
-      start_point_city: @trail.start_point_city,
-      start_point_street: @trail.start_point_street,
-      start_point_number: @trail.start_point_number,
-      end_point_city: @trail.end_point_city,
-      end_point_street: @trail.end_point_street,
-      end_point_number: @trail.end_point_number
-    }
-    @car_trip_duration = Trail.trip_duration(trail_params)
-    get_weather_stats(trail_params)
+    @car_trip_duration = Trips::Car.duration(trail)
+    get_weather_stats(trail)
 
     @main = JSON.parse(@weather_response.body)['weather'].first['main']
     @temperature = JSON.parse(@weather_response.body)['main'].first.second - 273.15
@@ -31,7 +23,7 @@ class TrailsController < ApplicationController
     end
 
     @jak
-    bus_trip_duration(trail_params)
+    bus_trip_duration(trail)
   end
 
   def create
@@ -49,22 +41,17 @@ class TrailsController < ApplicationController
     @bus_trip_duration = JSON.parse(@bus_trip_response.body)['routes'].first['legs'].first['duration']['text']
   end
 
-  # def get_georeferences(trail_params)
-  #  @start_point_response ||= Excon.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{trail_params[:start_point_number]}+#{trail_params[:start_point_street]}+#{trail_params[:start_point_city]}&key=AIzaSyBeilkitrb2rF6u0GYvrbdPhM9qtWgC0_s")
-  #   @end_point_response ||= Excon.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{trail_params[:end_point_number]}+#{trail_params[:end_point_street]}+#{trail_params[:end_point_city]}&key=AIzaSyBeilkitrb2rF6u0GYvrbdPhM9qtWgC0_s")
-  #   @s_p_ln = JSON.parse(@start_point_response.body)['results'].first['geometry']['location']['lng']
-  #   @s_p_lat = JSON.parse(@start_point_response.body)['results'].first['geometry']['location']['lat']
-  #   @e_p_ln = JSON.parse(@end_point_response.body)['results'].first['geometry']['location']['lng']
-  #   @e_p_lat = JSON.parse(@end_point_response.body)['results'].first['geometry']['location']['lat']
-  # end
-
   def get_weather_stats(trail_params)
-    @weather_response = Excon.get("http://api.openweathermap.org/data/2.5/weather?q=#{trail_params[:start_point_city]}")
+    @weather_response = Excon.get("http://api.openweathermap.org/data/2.5/weather?q=#{trail.start_point_city}")
   end
 
   private
 
+  def trail
+    @trail ||= Trail.find(params[:id])
+  end
+
   def trail_params
-    params.require(:trail).permit(:name, :start_point_city, :start_point_street, :start_point_number, :end_point_city, :end_point_street, :end_point_number)
+    params.require(:trail).permit!
   end
 end
