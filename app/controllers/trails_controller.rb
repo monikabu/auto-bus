@@ -36,11 +36,11 @@ class TrailsController < ApplicationController
 
   def create
     @trail = Trail.new(trail_params)
-    if @trail.save
-      flash[:notice] = "Your trail was successfully created"
+    if @trail.save!
+      flash[:notice] = t('trails.new_trails_created')
       redirect_to trail_path(@trail)
     else
-      render "new"
+      render :new
     end
   end
 

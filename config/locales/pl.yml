@@ -1,5 +1,6 @@
 pl:
   trails:
+    new: Nowa trasa
     add_new: Dodaj trasę
     start_point: Punkt początkowy
     end_point: Punkt końcowy
@@ -7,3 +8,4 @@ pl:
     city: Miasto
     street: Ulica
     street_number: Nr ulicy
+    new_trail_created: Nowa trasa została zapisana
