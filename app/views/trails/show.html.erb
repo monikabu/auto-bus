@@ -9,7 +9,7 @@
       </div>
       <% if @car_trip_duration.to_i < @bus_trip_duration.to_i %>
         <p>Autkiem śmigniesz w <%= @car_trip_duration %></p>
-        <p><%= @jak %></p>
+        <p><%= @weather_conditions %></p>
       <% else %>
         <p>Samochodem będziesz się wlókł <%= @car_trip_duration %></p>
       <% end %>
@@ -25,7 +25,7 @@
         <span class="clock"></span> <%= @bus_trip_duration %>
       </div>
       <p>Bus z żulkiem i 2 Basie dowiezie Cię w takim czasie: <%= @bus_trip_duration %></p>
-      <% if @car_trip_duration.to_i > @bus_trip_duration.to_i %><p><%= @jak %></p><% end %>
+      <p><%= @weather_conditions %></p>
     </div>
   </div>
   <div class="clearfix"></div>

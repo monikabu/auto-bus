@@ -9,3 +9,6 @@ pl:
     street: Ulica
     street_number: Nr ulicy
     new_trail_created: Nowa trasa została zapisana
+  weather:
+    poor: W paskudną pogodę
+    good: W słoneczną pogodę
