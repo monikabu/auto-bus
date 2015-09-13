@@ -12,3 +12,11 @@ pl:
   weather:
     poor: W paskudną pogodę
     good: W słoneczną pogodę
+  trip:
+    duration:
+      car:
+        title: Czas dojazdu samochodem
+        info: Autem dojedziesz w %{duration}
+      bus:
+        title: Czas dojazdu autobusem
+        info: Autobusem dojedziesz w %{duration}

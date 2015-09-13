@@ -1,33 +1,29 @@
 <div class="itemWrap">
   <div class="item car <% if @car_trip_duration.to_i < @bus_trip_duration.to_i %> suggested <% end %>">
     <div class="header">
-      <h2>czas dojazdu carem</h2>
+      <h2><%= t('trip.duration.car.title') %></h2>
     </div>
     <div class="content">
       <div class="estimatedTime">
         <span class="clock"></span><%= @car_trip_duration %>
       </div>
-      <% if @car_trip_duration.to_i < @bus_trip_duration.to_i %>
-        <p>Autkiem śmigniesz w <%= @car_trip_duration %></p>
-        <p><%= @weather_conditions %></p>
-      <% else %>
-        <p>Samochodem będziesz się wlókł <%= @car_trip_duration %></p>
-      <% end %>
+        <p><%= t('trip.duration.car.info', duration: @car_trip_duration) %></p>
     </div>
   </div>
 
   <div class="item bus <% if @car_trip_duration.to_i > @bus_trip_duration.to_i %>suggested <% end %>">
     <div class="header">
-      <h2>czas dojazdu busem</h2>
+      <h2><%= t('trip.duration.bus.title') %></h2>
     </div>
     <div class="content">
       <div class="estimatedTime">
-        <span class="clock"></span> <%= @bus_trip_duration %>
+        <span class="clock"></span><%= @bus_trip_duration %>
       </div>
-      <p>Bus z żulkiem i 2 Basie dowiezie Cię w takim czasie: <%= @bus_trip_duration %></p>
-      <p><%= @weather_conditions %></p>
+      <p><%= t('trip.duration.bus.info', duration: @bus_trip_duration) %></p>
     </div>
   </div>
   <div class="clearfix"></div>
+
+  <h2 class="weatherTitle"><%= @weather_conditions %></h1>
 </div>
 
