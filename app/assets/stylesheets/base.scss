@@ -15,6 +15,7 @@ html {
 
 a:link {
   text-decoration: none;
+  color: #fff;
   &.trail_title {
     color: #88dccc;
   }
@@ -22,7 +23,7 @@ a:link {
 
 a:visited {
     text-decoration: none;
-    color: #466661;
+    color: #fff;
   &.trail_title {
     color: #88dccc;
   }
@@ -251,11 +252,11 @@ a:visited {
   clear: both;
   color: #466661;
   border: none;
-  width: 50%;
-  font-size: 27px;
+  width: 100%;
+  font-size: 23px;
   font-weight: 700;
   border-radius: 2px;
-  height: 60px;
+  height: 40px;
   line-height: 30px;
   margin-top: 20px;
   padding: 0;

@@ -1,3 +1,5 @@
+<button class='btn btn-default btn-std'><%= link_to t('trails.new'), new_trail_path %></button>
+
 <% @trails.each do |trail| %>
   <h1><%= link_to trail.name, trail_path(trail), class: 'trail_title' %></h1>
     <p class = 'trail_subtitle' >
