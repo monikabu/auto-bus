@@ -67,8 +67,4 @@ class TrailsController < ApplicationController
   def trail_params
     params.require(:trail).permit(:name, :start_point_city, :start_point_street, :start_point_number, :end_point_city, :end_point_street, :end_point_number)
   end
-
-  def format_weather(weather)
-
-  end
 end

@@ -1,22 +1,22 @@
 <%= form_for @trail do |f| %>
 
-    <h2>Dodaj trasę</h2>
+    <h2><%= t('trails.add_new') %></h2>
 
-    <h3>Punkt początkowy:</h3>
-    <%= f.text_field :start_point_city, :placeholder => "Miasto" %>
+    <h3><%= t('trails.start_point') %></h3>
+    <%= f.text_field :start_point_city, placeholder: t('trails.city') %>
     <div class="split">
-      <%= f.text_field :start_point_street, :placeholder => "Ulica" %>
-      <%= f.text_field :start_point_number, :placeholder => "Nr. ulicy" %>
+      <%= f.text_field :start_point_street, placeholder: t('trails.street') %>
+      <%= f.text_field :start_point_number, placeholder: t('trails.street_number') %>
     </div>
 
-    <h3>Punkt końcowy:</h3>
-    <%= f.text_field :end_point_city, :placeholder => "Miasto" %>
+    <h3><%= t('trails.end_point') %></h3>
+    <%= f.text_field :end_point_city, placeholder: t('trails.city') %>
     <div class="split">
-      <%= f.text_field :end_point_street, :placeholder => "Ulica" %>
-      <%= f.text_field :end_point_number, :placeholder => "Nr. ulicy" %>
+      <%= f.text_field :end_point_street, placeholder: t('trails.street') %>
+      <%= f.text_field :end_point_number, placeholder: t('trails.street_number') %>
     </div>
 
-    <button type="submit" class="btn btn-default addRoute">Dodaj</button>
+    <button type="submit" class="btn btn-default addRoute"><%= t('trails.add_trail') %></button>
 
     <div style="display: none;">
       <%= f.text_field :name %>

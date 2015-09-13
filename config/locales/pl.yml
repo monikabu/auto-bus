@@ -1,0 +1,9 @@
+pl:
+  trails:
+    add_new: Dodaj trasę
+    start_point: Punkt początkowy
+    end_point: Punkt końcowy
+    add_trail: Dodaj
+    city: Miasto
+    street: Ulica
+    street_number: Nr ulicy
