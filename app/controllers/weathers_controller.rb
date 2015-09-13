@@ -3,7 +3,6 @@ class WeathersController < ActionController::Base
   def index
     Weather.last
     @weathers = get_weather_stats
-    throw @weathers
   end
 
   def get_weather_stats

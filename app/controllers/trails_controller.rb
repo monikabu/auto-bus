@@ -1,5 +1,4 @@
 class TrailsController < ApplicationController
-  #Excon.defaults[:uri_parser] = Addressable::URI
 
   def index
     @trails = Trail.all

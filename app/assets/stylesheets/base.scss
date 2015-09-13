@@ -13,6 +13,16 @@ html {
   background-size: cover;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #466661;
+}
+
+
 .contentWrap {
   margin: 60px auto;
   max-width: 720px;
@@ -229,5 +239,19 @@ html {
   }
 }
 
-
-
+.btn-std {
+  background: #88dccc;
+  display: block;
+  clear: both;
+  color: #466661;
+  border: none;
+  width: 50%;
+  font-size: 27px;
+  font-weight: 700;
+  border-radius: 2px;
+  height: 60px;
+  line-height: 30px;
+  margin-top: 20px;
+  padding: 0;
+  margin: auto;
+}
